@@ -24,7 +24,7 @@ export class AppComponent {
     return this.forms[0].controls.quantity as FormControl;
   }
   get nameControl(): FormControl {
-    return this.forms[0].controls.quantity as FormControl;
+    return this.forms[1].controls.name as FormControl;
   }
 
   constructor(private formBuilder: FormBuilder, private treeService: TreeService) {

@@ -1,7 +1,7 @@
 <app-stepper [forms]="forms" >
   <div *appStep="'Step 1'" [formGroup]="forms[0]">
         <label>
-          <span>Quantity<span [class.error]="quantityControl.errors">*</span></span>
+          <span>Quantity<span [class.error]="quantityControl.errors?.required">*</span></span>
           <input type="number" [formControl]="quantityControl" />
           <sub *ngIf="quantityControl.errors?.required">
             This step is required.
@@ -16,7 +16,7 @@
   </div>
   <div *appStep="'Step 2'" [formGroup]="forms[1]">
       <label>
-        Name:
+        <span>Name<span [class.error]="nameControl.errors?.required">*</span></span>
         <input type="text" [formControl]="nameControl" />
         <sub *ngIf="nameControl.errors?.required">
           This step is required.
