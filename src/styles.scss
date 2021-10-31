@@ -1,1 +1,130 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+
+$bg-color1: #565982;
+$bg-color2: #a9d2da;
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  background: linear-gradient(45deg, #{$bg-color1} 0%, #{$bg-color2} 100%);
+  width: 100vw;
+  height: 100vh;
+  *,*:before, *:after {
+    transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #182d3a;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 40px
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 36px
+}
+
+h3 {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 30px
+}
+
+
+h5 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px
+}
+
+h6 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  margin: .3em 0
+}
+
+button, a.button {
+  color: white;
+  background: linear-gradient(228deg, #38c5a4, #2fa78b 43%, #2fa78b 57%, #3d9ebb);
+  text-shadow: 0 0 4px #245d6e;
+  height: 3em;
+  min-width: 3em;
+  max-width: 100%;
+  padding: 0 2em;
+  border-radius: 1em;
+  border: none;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: Montserrat, sans-serif;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  &:active {
+    filter: brightness(0.9);
+  }
+}
+input {
+  border-radius: 0.5em;
+  border-style: double;
+  padding: 0.5em;
+}
+
+.ng-invalid  {
+  border-color: red;
+}
+.ng-pending, .ng-pending input {
+  animation: 1s glowBorder infinite;
+}
+
+@keyframes glowBorder {
+  0%, 100% {
+    border-color: #38c5a4;
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  h1 {
+    font-size:54px;
+    line-height: 58px
+  }
+
+  h2 {
+    font-size: 42px;
+    line-height: 48px
+  }
+
+  h3 {
+    font-size: 32px;
+    line-height: 36px
+  }
+
+  h5 {
+    font-size: 20px;
+    line-height: 24px
+  }
+
+  h6 {
+    font-size: 16px;
+    line-height: 20px
+  }
+}

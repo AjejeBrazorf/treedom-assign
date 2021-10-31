@@ -1,16 +1,29 @@
 :host {
-  .ng-invalid  {
-    border-color: red;
-  }
-  .ng-pending, .ng-pending input {
-    border-color: aqua;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   label {
     display: flex;
     flex-direction: column;
-    .error {
+    justify-content: flex-start;
+    min-height: 5em;
+
+    .error, sub {
       color: red;
     }
   }
 
+  .forms {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+  }
+  @media screen and (max-width: 767px) {
+    .forms {
+      width: 100%;
+    }
+  }
 }
