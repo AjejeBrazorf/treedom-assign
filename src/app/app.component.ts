@@ -19,7 +19,11 @@ import {Observable} from 'rxjs';
 export class AppComponent {
   forms: FormGroup[];
   title = 'treedom-assign';
+
   get quantityControl(): FormControl {
+    return this.forms[0].controls.quantity as FormControl;
+  }
+  get nameControl(): FormControl {
     return this.forms[0].controls.quantity as FormControl;
   }
 

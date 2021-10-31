@@ -17,15 +17,15 @@
   <div *appStep="'Step 2'" [formGroup]="forms[1]">
       <label>
         Name:
-        <input type="text" formControlName="name" />
-        <sub *ngIf="forms[1].controls.name.errors?.required">
+        <input type="text" [formControl]="nameControl" />
+        <sub *ngIf="nameControl.errors?.required">
           This step is required.
         </sub>
-        <sub *ngIf="forms[1].controls.name.errors?.nameAlreadyInUse">
+        <sub *ngIf="nameControl.errors?.nameAlreadyInUse">
           This name is already in use, try with another.
         </sub>
-        <sub *ngIf="forms[1].controls.name.errors?.minlength?.requiredLength">
-          The minimum length for this field is  {{forms[1].controls.name.errors?.minlength?.requiredLength}}.
+        <sub *ngIf="nameControl.errors?.minlength?.requiredLength">
+          The minimum length for this field is  {{nameControl.errors?.minlength?.requiredLength}}.
         </sub>
       </label>
   </div>
