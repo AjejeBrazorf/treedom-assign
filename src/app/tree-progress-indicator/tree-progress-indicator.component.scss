@@ -1,0 +1,271 @@
+$ui-elements-transition:	all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+:host{
+  perspective: 400px;
+}
+
+.host {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+  height: 15em;
+  flex-direction: column;
+  * {
+    transition: $ui-elements-transition;
+  }
+  *:before, *:after {
+    transition: none;
+  }
+}
+
+.terrain {
+  position: relative;
+  background: brown;
+  width: 4rem;
+  height: 1rem;
+  margin: -1rem auto;
+  border-radius: 3rem;
+  box-shadow: inset 9px -4px 13px 0px #6e31956b, inset -7px 3px 13px 0px #d0dd666b;
+  bottom: 0;
+  left: 0;
+  &:before, &:after {
+    content: ' ';
+    background: brown;
+    position: absolute;
+    box-shadow: inset 9px -4px 13px 0px #af66dd6b, inset -7px 3px 13px 0px #d0dd666b;
+  }
+  &:before {
+    width: 50%;
+    border-radius: 3rem;
+    height: 150%;
+    top: -0.5rem;
+    left: 16%;
+  }
+  &:after {
+    width: 50%;
+    border-radius: 3rem;
+    height: 150%;
+    top: -0.6rem;
+    right: 9%;
+  }
+
+}
+
+.cortex.sprout + .terrain {
+  width: 3rem;
+}
+.cortex.tree + .terrain {
+  width: 5rem;
+}
+.cortex.tree + .terrain, .cortex.tree + .terrain:before, .cortex.tree + .terrain:after {
+  background: #1e9374
+}
+
+.cortex {
+  display: block;
+  position: relative;
+  .cotyledon {
+    display: block;
+    position: absolute;
+  }
+
+  &.seed .cotyledon {
+    background: #4be38f;
+    border-radius: 100%;
+    transform: scale(0)
+  }
+
+  &.seed{
+    background: #f1a331;
+    width: 60em;
+    height: 130em;
+    border-radius: 100%;
+    font-size: 0.02rem;
+    transform: translateY(-600em);
+    animation: .3s ease-in getInTheGround 1 .3s both;
+    &:before, &:after {
+      content: ' ';
+      position: absolute;
+      width: 50%;
+      height: 100%;
+    }
+
+    @keyframes getInTheGround {
+      from {
+        transform: translateY(-500em);
+      }
+      to {
+        transform: translateY(0em);
+      }
+    }
+
+    &:before {
+      background: radial-gradient(100% 70% at 10% 50%, #766fc1 0%, #4433ee1f 100%);
+      filter: opacity(0.7);
+      clip-path: ellipse(100% 50% at 100% 50%);
+    }
+    &:after {
+      left: 50%;
+      z-index: -1;
+      background: radial-gradient(100% 70% at 90% 30%, #ffd335 0%, #4433ee1f 100%);
+      filter: opacity(0.7);
+      clip-path: ellipse(100% 50% at 0% 50%);
+    }
+  }
+
+  &.sprout {
+    width: 5em;
+    border-left: 0.7em solid #4be38f;
+    height: 8em;
+    border-radius: 50% 0 0 50%;
+    transform: translate(1.5em, 0) rotate(13deg);
+    transform-origin: 50% 100%;
+    &:before, &:after {
+      content: " ";
+      position: absolute;
+      width: 6em;
+      border-radius: 50% 0 0 50%;
+      height: 100%;
+      left: -0.75em;
+      z-index: -1;
+    }
+
+    &:before {
+      background: linear-gradient(
+          64deg, #ffd335 0%, transparent 24%);
+    }
+    &:after {
+      background: radial-gradient(31% 80% at 13% 20%, #766fc1 0%, #4433ee1f 30%, transparent 50%);
+    }
+    .cotyledon {
+      display: block;
+      position: absolute;
+      background: #4be38f;
+      width: 70em;
+      height: 130em;
+      border-radius: 100%;
+      font-size: 0.03rem;
+      top: -12em;
+      left: 32em;
+      border-right: 18em solid #c9d97c;
+      transform-origin: 50% 100%;
+      z-index: 1;
+      transform: translate(-65%, -100%) rotate(-205deg) scaleX(-1);
+      animation: .6s ease-in-out swing-cotyledon 1 .3s;
+      &:before, &:after {
+        content: ' ';
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        z-index: -1;
+      }
+
+
+      &:before {
+        background: radial-gradient(100% 70% at 10% 50%, #766fc1 0%, #4433ee1f 100%);
+        filter: opacity(0.7);
+        clip-path: ellipse(100% 50% at 100% 50%);
+      }
+      &:after {
+        left: 50%;
+        background: radial-gradient(100% 70% at 90% 30%, #ffd335 0%, #4433ee1f 100%);
+        filter: opacity(0.7);
+        clip-path: ellipse(100% 50% at 0% 50%);
+      }
+
+
+      @keyframes swing-cotyledon {
+        0% {
+          transform: translate(-65%, -100%) rotate(-220deg) scaleX(-1);
+        }
+        50% {
+          transform: translate(-65%, -100%) rotate(-190deg) scaleX(-1);
+        }
+
+        100% {
+          transform: translate(-65%, -100%) rotate(-205deg) scaleX(-1);
+        }
+      }
+    }
+  }
+  &.tree{
+    background: #c18125;
+    margin: 0 calc((450em - 90em) / 2);
+    width: 90em;
+    height: 340em;
+    border-radius: 10em;
+    font-size: 0.03rem;
+    &:before, &:after {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      filter: opacity(0.7);
+    }
+
+    &:before {
+      background: radial-gradient(100% 70% at 90% 80%, #ffd335 0%, #4433ee1f 100%);
+    }
+    &:after {
+      background: radial-gradient(100% 110% at 30% 50%, #766fc1 0%, #4433ee1f 100%);
+    }
+
+    .cotyledon {
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 0;
+      width: 450em;
+      height: 160em;
+      box-shadow: inset 17px -20px 40em 0px #aa8be96b;
+      border-radius: 110em;
+      display: block;
+      position: absolute;
+      background: radial-gradient(120% 80% at 60% -20%, #4433ee52 0%, #4433ee52 100%), #00ff72;
+      font-size: 0.03rem;
+      transform-origin: 50% 100%;
+      animation: .6s ease-in-out swing 1 .3s both;
+      z-index: 1;
+      &:before, &:after {
+        content: " ";
+        position: absolute;
+        width: 40%;
+        height: 100%;
+        border-radius: 180em;
+        z-index: 2;
+      }
+      &:before {
+        background: radial-gradient(120% 80% at 60% -20%, #ffd335 0%, #4433ee52 100%), #00ff72;
+        transform: translate(48em, -80em);
+      }
+      &:after {
+        left: 50%;
+        background: radial-gradient(120% 80% at 60% -20%, #ffd335 0%, #4433ee52 100%), #00ff72;
+        width: 50%;
+        border-radius: 110em;
+        transform: translate(-32em, -100em) rotate(25deg);
+      }
+
+      @keyframes swing {
+        0% {
+          transform: translate(-50%, -50%) rotate(-10deg) skew(1.1deg,.9deg);
+        }
+        50% {
+          transform: translate(-50%, -50%) rotate(10deg) skew(.9deg,1.1deg);
+        }
+
+        100% {
+          transform: translate(-50%, -50%) rotate(0deg) skew(1deg,1deg);
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
