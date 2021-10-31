@@ -60,9 +60,9 @@ h6 {
   margin: .3em 0
 }
 
-button, a.button {
+input[type='submit'],input[type='button'],button, a.button {
   color: white;
-  background: linear-gradient(228deg, #38c5a4, #2fa78b 43%, #2fa78b 57%, #3d9ebb);
+  background: linear-gradient(228deg, #85ced1, #8aa4b9);
   text-shadow: 0 0 4px #245d6e;
   height: 3em;
   min-width: 3em;
@@ -77,6 +77,7 @@ button, a.button {
   letter-spacing: 0.02em;
   cursor: pointer;
   &:active {
+    transition: none;
     filter: brightness(0.9);
   }
 }

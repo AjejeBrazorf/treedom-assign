@@ -21,8 +21,8 @@
 <ng-template #content>
   <ng-container [ngTemplateOutlet]="currentStep.template"></ng-container>
   <div class="actions">
-    <button class="prev" *ngIf="canGoPrev()" (click)="prevStep()" [disabled]="(loading$ | async)"><</button>
-    <button class="next" *ngIf="!isLastStep()" type="submit" [disabled]="(loading$ | async)">></button>
+    <input class="prev" type="button" *ngIf="canGoPrev()" (click)="prevStep()" [disabled]="(loading$ | async)" value="<" />
+    <input class="next" *ngIf="!isLastStep()" type="submit" [disabled]="(loading$ | async)" value=">"/>
     <button class="next" *ngIf="isLastStep()" (click)="resetStepper()" [disabled]="(loading$ | async)">reset</button>
   </div>
 </ng-template>
