@@ -17,6 +17,7 @@ import {Observable, Subject} from 'rxjs';
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperComponent implements AfterViewInit, OnDestroy{
 
