@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, ContentChildren, Input, OnDestroy, OnInit, QueryList} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  Input,
+  OnDestroy,
+  OnInit,
+  QueryList
+} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {StepDirective} from './step.directive';
 import {map, switchMap, take, takeUntil} from 'rxjs/operators';
@@ -8,9 +17,8 @@ import {Observable, Subject} from 'rxjs';
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepperComponent implements OnInit, OnDestroy{
+export class StepperComponent implements AfterViewInit, OnDestroy{
 
   @ContentChildren(StepDirective)
   steps!: QueryList<StepDirective>;
@@ -19,7 +27,15 @@ export class StepperComponent implements OnInit, OnDestroy{
   onDestroy$: Subject<any> = new Subject<any>();
   onNextWhilePending$: Subject<any> = new Subject<any>();
   loading$!: Observable<boolean>;
-  currentStepIndex!: number;
+  _currentStepIndex!: number;
+  set currentStepIndex(n: number) {
+    this._currentStepIndex = n;
+    this.cd.detectChanges();
+  }
+
+  get currentStepIndex(): number {
+    return this._currentStepIndex;
+  }
 
   get currentStep(): StepDirective{
     return this.steps?.toArray()[this.currentStepIndex];
@@ -29,17 +45,16 @@ export class StepperComponent implements OnInit, OnDestroy{
     return this.forms[this.currentStepIndex];
   }
 
-  ngOnInit(): void {
+  constructor(private cd: ChangeDetectorRef) { }
+
+  ngAfterViewInit(): void {
     this.currentStepIndex = 0;
     this.onNextWhilePending$.asObservable().pipe(
-      take(1),
       switchMap(() => this.currentForm.statusChanges),
       takeUntil(this.onDestroy$),
     ).subscribe( res => {
       if (res === 'VALID') {
-        if (!this.isLastStep()) {
           this.currentStepIndex++;
-        }
       }
     });
     this.loading$ = this.currentForm.statusChanges.pipe(
@@ -67,11 +82,11 @@ export class StepperComponent implements OnInit, OnDestroy{
   }
 
   nextStep(): void {
-      if (this.currentForm.status === 'PENDING') {
-         this.onNextWhilePending$.next();
-       } else if (this.currentForm.status === 'VALID'){
-         this.currentStepIndex++;
-       }
+    if (this.currentForm.status === 'PENDING') {
+       this.onNextWhilePending$.next();
+     } else if (this.currentForm.status === 'VALID'){
+       this.currentStepIndex++;
+     }
   }
 
 
@@ -85,6 +100,11 @@ export class StepperComponent implements OnInit, OnDestroy{
     if (n < this.currentStepIndex || ( n > this.currentStepIndex && !this.forms[n - 1].invalid)) {
       this.currentStepIndex = n;
     }
+  }
+
+  resetStepper(): void {
+    this.forms.forEach(form => form.reset());
+    this.currentStepIndex = 0;
   }
 
   ngOnDestroy(): void {

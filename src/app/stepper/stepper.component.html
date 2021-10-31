@@ -1,5 +1,5 @@
 <div class="steps">
-  <div class="step" *ngFor="let step of steps.toArray(); index as i">
+  <div class="step" *ngFor="let step of steps.toArray(); index as i" [class.active]="i === currentStepIndex">
     <div class="step-indicator"
          (click)="goToStep(i)"
          [class.active]="i === currentStepIndex"
@@ -8,7 +8,7 @@
     >
       {{i + 1}}
     </div>
-    <h3 *ngIf="currentStepIndex !== i">{{step.label}}</h3>
+    <h4 *ngIf="currentStepIndex !== i">{{step.label}}</h4>
     <div *ngIf="currentStepIndex === i" class="step-content">
       <h3>{{step.label}}</h3>
       <form *ngIf="currentForm else content" [formGroup]="currentForm" (ngSubmit)="nextStep()">
@@ -21,7 +21,8 @@
 <ng-template #content>
   <ng-container [ngTemplateOutlet]="currentStep.template"></ng-container>
   <div class="actions">
-    <button type="button" (click)="prevStep()" [disabled]="!canGoPrev() || (loading$ | async)"><</button>
-    <button type="submit" [disabled]="(loading$ | async)">></button>
+    <button class="prev" *ngIf="canGoPrev()" (click)="prevStep()" [disabled]="(loading$ | async)"><</button>
+    <button class="next" *ngIf="!isLastStep()" type="submit" [disabled]="(loading$ | async)">></button>
+    <button class="next" *ngIf="isLastStep()" (click)="resetStepper()" [disabled]="(loading$ | async)">reset</button>
   </div>
 </ng-template>
