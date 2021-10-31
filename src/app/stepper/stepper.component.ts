@@ -2,10 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  ContentChildren,
+  ContentChildren, EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
+  OnInit, Output,
   QueryList
 } from '@angular/core';
 import {FormGroup} from '@angular/forms';
@@ -24,12 +24,15 @@ export class StepperComponent implements AfterViewInit, OnDestroy{
   steps!: QueryList<StepDirective>;
   @Input()
   forms!: FormGroup[];
+  @Output()
+  progress$: EventEmitter<number> = new EventEmitter<number>();
   onDestroy$: Subject<any> = new Subject<any>();
   onNextWhilePending$: Subject<any> = new Subject<any>();
   loading$!: Observable<boolean>;
   _currentStepIndex!: number;
   set currentStepIndex(n: number) {
     this._currentStepIndex = n;
+    this.progress$.next((this.currentStepIndex + 1) / this.steps?.toArray().length * 100);
     this.cd.detectChanges();
   }
 
