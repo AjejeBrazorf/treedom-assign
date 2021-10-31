@@ -1,5 +1,5 @@
 <div class="steps">
-  <div class="step" *ngFor="let step of steps.toArray(); index as i" [class.active]="i === currentStepIndex">
+  <div class="step" *ngFor="let step of steps?.toArray(); index as i" [class.active]="i === currentStepIndex">
     <div class="step-indicator"
          (click)="goToStep(i)"
          [class.active]="i === currentStepIndex"
@@ -22,7 +22,7 @@
   <ng-container [ngTemplateOutlet]="currentStep.template"></ng-container>
   <div class="actions">
     <input class="prev" type="button" *ngIf="canGoPrev()" (click)="prevStep()" [disabled]="(loading$ | async)" value="<" />
-    <input class="next" *ngIf="!isLastStep()" type="submit" [disabled]="(loading$ | async)" value=">"/>
+    <input class="next" *ngIf="!isLastStep()" (click)="nextStep()" type="submit" [disabled]="(loading$ | async)" value=">"/>
     <button class="next" *ngIf="isLastStep()" (click)="resetStepper()" [disabled]="(loading$ | async)">reset</button>
   </div>
 </ng-template>
