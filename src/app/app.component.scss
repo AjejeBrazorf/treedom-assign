@@ -15,15 +15,13 @@
   }
 
   .forms {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    padding: 2em;
     width: 50%;
   }
   @media screen and (max-width: 767px) {
     .forms {
       width: 100%;
+      padding: 0;
     }
   }
 }
