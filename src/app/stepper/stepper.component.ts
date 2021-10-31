@@ -1,16 +1,18 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  ContentChildren, EventEmitter,
+  ContentChildren,
+  EventEmitter,
   Input,
   OnDestroy,
-  OnInit, Output,
+  Output,
   QueryList
 } from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {StepDirective} from './step.directive';
-import {map, switchMap, take, takeUntil} from 'rxjs/operators';
+import {map, switchMap, takeUntil} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 
 @Component({
@@ -27,10 +29,13 @@ export class StepperComponent implements AfterViewInit, OnDestroy{
   forms!: FormGroup[];
   @Output()
   progress$: EventEmitter<number> = new EventEmitter<number>();
-  onDestroy$: Subject<any> = new Subject<any>();
-  onNextWhilePending$: Subject<any> = new Subject<any>();
+
   loading$!: Observable<boolean>;
-  _currentStepIndex!: number;
+  private _onDestroy$: Subject<any> = new Subject<any>();
+  private _onNextWhilePending$: Subject<any> = new Subject<any>();
+
+  private _currentStepIndex!: number;
+
   set currentStepIndex(n: number) {
     this._currentStepIndex = n;
     this.progress$.next((this.currentStepIndex + 1) / this.steps?.toArray().length * 100);
@@ -53,16 +58,16 @@ export class StepperComponent implements AfterViewInit, OnDestroy{
 
   ngAfterViewInit(): void {
     this.currentStepIndex = 0;
-    this.onNextWhilePending$.asObservable().pipe(
+    this._onNextWhilePending$.asObservable().pipe(
       switchMap(() => this.currentForm.statusChanges),
-      takeUntil(this.onDestroy$),
+      takeUntil(this._onDestroy$),
     ).subscribe( res => {
       if (res === 'VALID') {
           this.currentStepIndex++;
       }
     });
     this.loading$ = this.currentForm.statusChanges.pipe(
-      takeUntil(this.onDestroy$),
+      takeUntil(this._onDestroy$),
       map(res => {
         return res === 'PENDING' || res === undefined;
       })
@@ -87,7 +92,7 @@ export class StepperComponent implements AfterViewInit, OnDestroy{
 
   nextStep(): void {
     if (this.currentForm.status === 'PENDING') {
-       this.onNextWhilePending$.next();
+       this._onNextWhilePending$.next();
      } else if (this.currentForm.status === 'VALID'){
        this.currentStepIndex++;
      }
@@ -112,6 +117,6 @@ export class StepperComponent implements AfterViewInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.onDestroy$.next();
+    this._onDestroy$.next();
   }
 }

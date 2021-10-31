@@ -29,11 +29,11 @@
         animation: .3s fadeInBottom ease-in-out both;
       }
 
-      &:first-of-type .step-indicator.dirty:after, &:first-of-type .step-indicator:before {
+      &:first-of-type .step-indicator.touched:after, &:first-of-type .step-indicator:before {
         top: 50%;
         height: 50%;
       }
-      &:last-of-type .step-indicator.dirty:after, &:last-of-type .step-indicator:before {
+      &:last-of-type .step-indicator.touched:after, &:last-of-type .step-indicator:before {
         bottom: 50%;
         height: 50%;
       }
@@ -55,13 +55,14 @@
       width: 2em;
       height: 2em;
       margin: 0 2em;
-      background: gray;
+      background: #cbcbcb;
       display: flex;
+      font-weight: bold;
       align-items: center;
       justify-content: center;
       flex: 0 0 auto;
-      &.dirty {
-        background: #60dba4;
+      &.touched {
+        background: #63d588;
         &:after, &:before {
           background: #8aa4b9;
         }
@@ -72,13 +73,17 @@
           background: #f0f8ff;
         }
 
-        &.dirty {
+        &.touched {
           background: #85ced1;
           &:after {
             height: 50%;
           }
         }
       }
+      &:not(.active):not(.touched) {
+        color: #555a5e;
+      }
+
       &:after, &:before {
         content: ' ';
         position: absolute;
@@ -95,6 +100,7 @@
 
       &.invalid {
         background: #cd4c4c;
+        color: #f0f0f0;
       }
 
       @include media("<=phone") {
@@ -132,16 +138,20 @@
     @include media("<=phone") {
       .actions {
         .prev{
-          left: 1em;
+          left: 0;
+          border-radius: 0 1em 1em 0;
         }
         .next {
-          right: 1em;
+          right: 0;
+          border-radius: 1em 0 0 1em;
         }
         > * {
           margin-left: 0;
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
+          padding: 0 1em;
+          height: 100%;
         }
       }
     }

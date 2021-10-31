@@ -5,14 +5,18 @@ $bg-color2: #a9d2da;
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
+  font-weight: 200;
   background: linear-gradient(45deg, #{$bg-color1} 0%, #{$bg-color2} 100%);
   width: 100vw;
   height: 100vh;
   *,*:before, *:after {
-    transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55), font-weight 0s;
   }
 }
-
+ a{
+   font-weight: bold;
+   cursor: pointer;
+ }
 
 input[type='submit'],input[type='button'],button, a.button {
   color: white;
@@ -42,12 +46,15 @@ input {
   border-radius: 0.5em;
   border-style: double;
   padding: 0.5em;
+  &[type='number'] {
+    max-width: 5em;
+  }
 }
 
 .ng-invalid  {
   border-color: red;
 }
-input.ng-pending, .ng-pending input {
+input.ng-pending {
   animation: 1s glowBorder infinite;
 }
 

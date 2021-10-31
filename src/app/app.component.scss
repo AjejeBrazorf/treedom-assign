@@ -15,13 +15,27 @@
       color: red;
     }
   }
+  .tip {
+    background: #e1e1e1;
+    padding: 1em;
+    margin: 1em 0;
+    width: max-content;
+    max-width: 100%;
+    display: block;
+    border-radius: 1em;
+    word-break: break-word;
+  }
 
   .forms {
     padding: 2em;
     width: 50%;
+    max-width: 700px;
     @include media("<=phone") {
       width: 100%;
-      padding: 0;
+      padding: 2em 0;
+    }
+    app-stepper {
+      filter: drop-shadow(-0.4em 0.4em 0.5em #4f33584d);
     }
   }
 }

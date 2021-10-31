@@ -1,10 +1,10 @@
 <section class="forms">
   <app-tree-progress-indicator [progress]="stepper.progress$ | async"></app-tree-progress-indicator>
   <app-stepper [forms]="forms" #stepper>
-    <div *appStep="'Step 1'" [formGroup]="forms[0]">
+    <div *appStep="'Step 1'">
       <label>
         <h6>Quantity<span [class.error]="quantityControl.errors?.required">*</span></h6>
-        <input type="number" [formControl]="quantityControl" />
+        <input  type="number" [formControl]="quantityControl" />
         <sub *ngIf="quantityControl.errors?.required">
           This step is required.
         </sub>
@@ -12,11 +12,13 @@
           Sorry, the minimum value is {{quantityControl.errors?.min?.min}}.
         </sub>
         <sub *ngIf="quantityControl.errors?.quantityOverflow">
-          Sorry, we don't have {{quantityControl.value}} Trees, the best we can do is {{quantityControl.errors?.maxQuantity}}.
+          Sorry, we don't have {{quantityControl.value}} Trees, the best we can do is
+          <strong>{{quantityControl.errors?.maxQuantity}}</strong>.
         </sub>
       </label>
+      <span class="tip">Try to go over <strong>10</strong>!</span>
     </div>
-    <div *appStep="'Step 2'" [formGroup]="forms[1]">
+    <div *appStep="'Step 2'">
       <label>
         <h6>Name<span [class.error]="nameControl.errors?.required">*</span></h6>
         <input type="text" [formControl]="nameControl" />
@@ -30,6 +32,7 @@
           The minimum length for this field is  {{nameControl.errors?.minlength?.requiredLength}}.
         </sub>
       </label>
+      <span class="tip">Try with <strong>Paperoga</strong>!</span>
     </div>
     <div *appStep="'Step 3'">
       <label>Good Job!</label>
