@@ -1,0 +1,16 @@
+:host {
+  .ng-invalid  {
+    border-color: red;
+  }
+  .ng-pending, .ng-pending input {
+    border-color: aqua;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    .error {
+      color: red;
+    }
+  }
+
+}

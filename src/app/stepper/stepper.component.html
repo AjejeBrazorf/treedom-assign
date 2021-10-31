@@ -1,0 +1,27 @@
+<div class="steps">
+  <div class="step" *ngFor="let step of steps.toArray(); index as i">
+    <div class="step-indicator"
+         (click)="goToStep(i)"
+         [class.active]="i === currentStepIndex"
+         [class.dirty]="formIsDirty(i)"
+         [class.invalid]="i === currentStepIndex && formIsInvalid(i)"
+    >
+      {{i + 1}}
+    </div>
+    <h3 *ngIf="currentStepIndex !== i">{{step.label}}</h3>
+    <div *ngIf="currentStepIndex === i" class="step-content">
+      <h3>{{step.label}}</h3>
+      <form *ngIf="currentForm else content" [formGroup]="currentForm" (ngSubmit)="nextStep()">
+        <ng-template [ngTemplateOutlet]="content"></ng-template>
+      </form>
+    </div>
+  </div>
+</div>
+
+<ng-template #content>
+  <ng-container [ngTemplateOutlet]="currentStep.template"></ng-container>
+  <div class="actions">
+    <button type="button" (click)="prevStep()" [disabled]="!canGoPrev() || (loading$ | async)"><</button>
+    <button type="submit" [disabled]="(loading$ | async)">></button>
+  </div>
+</ng-template>
