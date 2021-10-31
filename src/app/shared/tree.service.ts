@@ -12,7 +12,6 @@ export type ValidationRes = {
   useClass: TreeMockService,
 })
 export abstract class TreeService {
-  abstract buyTree(): Observable<ValidationRes>;
-  abstract quantityAsyncValidator(quantity: number): Observable<ValidationErrors | null>;
+  abstract quantityOverflowValidator(quantity: number): Observable<ValidationErrors | null>;
   abstract uniqueNameValidator(name: string): Observable<ValidationErrors | null>;
 }

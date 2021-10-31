@@ -61,7 +61,7 @@ export class AppComponent {
 
   quantityValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.treeService.quantityAsyncValidator(control.value as number);
+      return this.treeService.quantityOverflowValidator(control.value as number);
     };
   }
 
