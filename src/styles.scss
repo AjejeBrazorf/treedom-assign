@@ -80,6 +80,9 @@ input[type='submit'],input[type='button'],button, a.button {
     transition: none;
     filter: brightness(0.9);
   }
+  &[disabled] {
+    filter: saturate(0);
+  }
 }
 input {
   border-radius: 0.5em;
