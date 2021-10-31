@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;600;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
-
+@import "theming";
 $bg-color1: #565982;
 $bg-color2: #a9d2da;
 
@@ -15,50 +13,6 @@ body {
   }
 }
 
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Montserrat, sans-serif;
-  font-weight: 700;
-  line-height: 1.1;
-  color: #182d3a;
-}
-
-h1 {
-  font-weight: 800;
-  font-size: 36px;
-  line-height: 40px
-}
-
-h2 {
-  font-weight: 800;
-  font-size: 30px;
-  line-height: 36px
-}
-
-h3 {
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 30px
-}
-
-
-h5 {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 24px
-}
-
-h6 {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  margin: .3em 0
-}
 
 input[type='submit'],input[type='button'],button, a.button {
   color: white;
@@ -93,7 +47,7 @@ input {
 .ng-invalid  {
   border-color: red;
 }
-.ng-pending, .ng-pending input {
+input.ng-pending, .ng-pending input {
   animation: 1s glowBorder infinite;
 }
 
@@ -103,32 +57,5 @@ input {
   }
   50% {
     border-color: transparent;
-  }
-}
-
-@media screen and (min-width: 767px) {
-  h1 {
-    font-size:54px;
-    line-height: 58px
-  }
-
-  h2 {
-    font-size: 42px;
-    line-height: 48px
-  }
-
-  h3 {
-    font-size: 32px;
-    line-height: 36px
-  }
-
-  h5 {
-    font-size: 20px;
-    line-height: 24px
-  }
-
-  h6 {
-    font-size: 16px;
-    line-height: 20px
   }
 }

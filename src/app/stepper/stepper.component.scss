@@ -1,3 +1,6 @@
+@import "../../theming";
+
+
 :host {
   display: block;
   padding: 1em 0;
@@ -19,6 +22,7 @@
       width: 100%;
       align-content: space-around;
       position: relative;
+      z-index: 1;
       &.active {
         box-shadow: 0 0 1em 1em #ad92d321;
         background: #f1f1f1;
@@ -34,7 +38,8 @@
         height: 50%;
       }
     }
-    @media screen and (max-width: 767px) {
+
+    @include media("<=phone") {
       .step {
         padding: 0 4em;
         width: calc(100% - 8em);
@@ -43,6 +48,7 @@
         }
       }
     }
+
 
     .step-indicator{
       border-radius: 2em;
@@ -91,7 +97,7 @@
         background: #cd4c4c;
       }
 
-      @media screen and (max-width: 767px) {
+      @include media("<=phone") {
         display: none;
       }
     }
@@ -105,7 +111,7 @@
     flex-direction: column;
     padding: 1em 2em 1em 0;
 
-    @media screen and (max-width: 767px) {
+    @include media("<=phone") {
       padding: 1em 2em 1em 2em;
       align-items: center;
     }
@@ -123,7 +129,7 @@
       }
     }
 
-    @media screen and (max-width: 767px) {
+    @include media("<=phone") {
       .actions {
         .prev{
           left: 1em;
@@ -131,7 +137,7 @@
         .next {
           right: 1em;
         }
-        button{
+        > * {
           margin-left: 0;
           position: absolute;
           top: 50%;
@@ -148,5 +154,4 @@
     }
     to { opacity: 1 }
   }
-
 }

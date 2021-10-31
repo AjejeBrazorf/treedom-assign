@@ -1,3 +1,5 @@
+@import "../theming";
+
 :host {
   display: flex;
   flex-direction: column;
@@ -17,9 +19,7 @@
   .forms {
     padding: 2em;
     width: 50%;
-  }
-  @media screen and (max-width: 767px) {
-    .forms {
+    @include media("<=phone") {
       width: 100%;
       padding: 0;
     }
