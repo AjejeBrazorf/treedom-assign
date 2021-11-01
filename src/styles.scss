@@ -1,20 +1,15 @@
 @import "theming";
-$bg-color1: #565982;
-$bg-color2: #a9d2da;
 
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
-  font-weight: 200;
-  background: linear-gradient(45deg, #{$bg-color1} 0%, #{$bg-color2} 100%);
+  background: linear-gradient(45deg, #565982 0%, #a9d2da 100%);
   width: 100vw;
   height: 100vh;
   *,*:before, *:after {
     transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55), font-weight 0s;
   }
 }
- a{
-   font-weight: bold;
+a{
    cursor: pointer;
  }
 
