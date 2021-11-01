@@ -1,5 +1,13 @@
 # Treedom task
 
+### Come far paritre il progetto
+
+```
+npm install
+npm run start
+```
+Stupiti, uh?   
+<img src="https://user-images.githubusercontent.com/12338075/139662136-facbe465-a6f8-4598-bab4-b3bcb7e39b34.png" width="100">
 ### Note sull'implementazione:
 
 L'idea di base é quella di fornire un esperienza di utilizzo simile a quella dello [stepper di Angular Material](https://material.angular.io/components/stepper/overview).
