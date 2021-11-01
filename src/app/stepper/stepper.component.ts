@@ -6,7 +6,7 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnDestroy, OnInit,
+  OnDestroy,
   Output,
   QueryList
 } from '@angular/core';
