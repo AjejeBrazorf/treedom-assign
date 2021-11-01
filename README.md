@@ -25,5 +25,5 @@ Solitamente per riuscirci procedo aggiungendo solo i validatori sincroni nella c
 In questo caso peró il template del `FormGroup` (e quindi anche la possibilitá di ascoltare l'evento `ngSubmit`) é definito all'interno dell' `app-stepper`, il quale non é a conoscenza di quali siano i validatori asincroni di quello step.
 
 2) Validare il form solo on `submit`:   
-La validazione dei form viene effettuata sia on `submit`, sia ogni volta che il form viene bindato alla view (questo effetto é molto chiaro se si prova a validare il primo step, passare al secondo e tornare indietro al primo, il form lampeggerá indicando il suo stato `PENDING` dovuto alla validazione asincrona ).
-Onestamente, non ho idea di come gestire questa cosa.
+La validazione dei form viene effettuata sia on `submit`, sia ogni volta che il form viene bindato alla view (questo effetto é molto chiaro se si prova a validare il primo step, passare al secondo e tornare indietro al primo, il form lampeggerá indicando il suo stato `PENDING` dovuto alla validazione asincrona ).   
+Ho provato a gestire in piú modi questo comportamento ma senza successo.
